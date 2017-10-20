@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E0A37C61-719B-4CBB-A62E-1D70BBBC7429}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MFM.GatesBallsNetwork.Implementation</RootNamespace>
+    <AssemblyName>MFM.GatesBallsNetwork.Implementation</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BallContainer.cs" />
+    <Compile Include="BallRouter.cs" />
+    <Compile Include="ContainerConfig.cs" />
+    <Compile Include="DryIoc\AsyncExecutionFlowScopeContext.cs" />
+    <Compile Include="DryIoc\Container.cs" />
+    <Compile Include="DryIoc\FastExpressionCompiler.cs" />
+    <Compile Include="DryIoc\ImTools.cs" />
+    <Compile Include="Intersection.cs" />
+    <Compile Include="NetworkBuilder.cs" />
+    <Compile Include="NetworkNavigator.cs" />
+    <Compile Include="NetworkVisualizer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RootIntersection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MFM.GatesBallsNetwork.Contracts\MFM.GatesBallsNetwork.Contracts.csproj">
+      <Project>{9dfcdc12-eb6b-4662-83f9-f4c6e6de19b9}</Project>
+      <Name>MFM.GatesBallsNetwork.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

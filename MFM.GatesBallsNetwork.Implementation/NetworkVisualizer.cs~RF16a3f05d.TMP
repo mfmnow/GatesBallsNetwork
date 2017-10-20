@@ -1,0 +1,32 @@
+﻿using MFM.GatesBallsNetwork.Contracts;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace MFM.GatesBallsNetwork.Implementation
+{
+    public class NetworkVisualizer: INetworkVisualizer
+    {
+        public async Task<string> GetNetworkDiagram(int depth, IRootIntersection rootIntersection)
+        {
+            List<string> _list = new List<string>();
+            await GetNodeLines(2, depth, rootIntersection, _list);
+            return string.Join(",", _list.ToArray());
+        }
+
+        async Task GetNodeLines(int level, int depth, IRootIntersection intersection, List<string> list)
+        {
+            if (level < depth)//Gates
+            {
+                list.Add(GetNodeLine(level, depth, "G"));
+                await GetNodeLines(level + 1, depth, intersection.LeftNode as IRootIntersection, list);
+                await GetNodeLines(level + 1, depth, intersection.RightNode as IRootIntersection, list);
+            }
+        }
+
+        string GetNodeLine(int level, int depth, string type)
+        {
+            return new String('=', (int)Math.Pow(2, depth - (level - 1)) / 2) + type + new String('=', (int)Math.Pow(2, depth - (level - 1)) / 2);
+        }
+    }
+}

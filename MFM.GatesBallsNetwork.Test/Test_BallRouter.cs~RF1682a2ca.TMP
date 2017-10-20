@@ -1,0 +1,37 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MFM.GatesBallsNetwork.Implementation;
+using MFM.GatesBallsNetwork.Contracts;
+using DryIoc;
+using System.Collections.Generic;
+
+namespace MFM.GatesBallsNetwork.Test
+{
+    [TestClass]
+    public class Test_BallRouter
+    {
+        IContainer _container;
+        public Test_BallRouter()
+        {
+            _container = ContainerConfig.Build();
+        }
+
+        [TestMethod]
+        public void TestBallRouter_RouteBallToContainer()
+        {
+            var _networkBuilder = _container.Resolve<INetworkBuilder>();
+
+            var _root = _networkBuilder.BuildNetwork(4);
+
+            var _ballRouter = _container.Resolve<IBallRouter>();
+            string _results = "";
+            for (int i = 0; i < 15; i++)
+            {
+                _results += _ballRouter.RouteBallToContainer(_root).Result+"-";
+            }
+            var _networkNavigator = _container.Resolve<INetworkNavigator>();
+            var _emptyList = _networkNavigator.GetEmptyBallContainers(_root).Result;
+            Assert.IsTrue(_emptyList.Count>0);
+            Assert.IsTrue(_results.IndexOf(_emptyList[0].ToString()));
+        }
+    }
+}
